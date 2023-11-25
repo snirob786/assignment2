@@ -29,8 +29,35 @@ const getUser = async (userId: string) => {
   return result;
 };
 
+const updateUserByUserId = async (userId: string, user: User) => {
+  const result = await UserModel.findOneAndUpdate({ userId }, user, {
+    new: true,
+    remove: false,
+  }).select({
+    password: 0,
+    _id: 0,
+  });
+  return result;
+};
+
+const deleteUserByUserId = async (userId: string) => {
+  const result = await UserModel.findOneAndDelete({ userId });
+  return result;
+};
+
+const getOrdersByUserId = async (userId: string) => {
+  const result = await UserModel.findOne({ userId }).select({
+    orders: 1,
+    _id: 0,
+  });
+  return result;
+};
+
 export const userService = {
   createUser,
   userList,
   getUser,
+  updateUserByUserId,
+  deleteUserByUserId,
+  getOrdersByUserId,
 };
