@@ -12,4 +12,9 @@ router.get("/:userId/orders/total-price", userController.getTotalByUserId);
 // Post methods for the api/users route
 router.post("/", userController.createUser);
 
+router.put("/:userId", userController.updateUserByUserId);
+router.put("/:userId/orders", userController.updateOrdersByUserId);
+
+router.delete("/:userId", userController.deleteUserByUserId);
+
 export const userRouter = router;
