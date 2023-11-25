@@ -9,7 +9,7 @@ const createUser = async (user: User) => {
   return newResponse;
 };
 
-const getUser = async () => {
+const userList = async () => {
   const result = await UserModel.find().select({
     username: 1,
     fullName: 1,
@@ -21,7 +21,16 @@ const getUser = async () => {
   return result;
 };
 
+const getUser = async (userId: string) => {
+  const result = await UserModel.findOne({ userId }).select({
+    password: 0,
+    _id: 0,
+  });
+  return result;
+};
+
 export const userService = {
   createUser,
+  userList,
   getUser,
 };
