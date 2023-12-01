@@ -20,5 +20,7 @@ DB_NAME=[Your mongodb database name for the project] //example: assignment2
 DB_HOST=[Your mongodb cluster and projectid found in mongoatlas connect string after @ ] //example: assignment2.mz6y1wn
 ```
 
-4. Now run the command below and your project will on the mentioned port in env like
+4. Now run the command below
+   `npm run dev`
+   and your project will on the mentioned port in env like
    `localhost:500`
