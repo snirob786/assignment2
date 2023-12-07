@@ -25,6 +25,7 @@ const userSchema = new Schema<User>({
   },
   orders: [
     {
+      _id: false,
       productName: { type: String },
       price: { type: Number },
       quantity: { type: Number },

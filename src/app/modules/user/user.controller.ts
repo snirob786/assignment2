@@ -125,7 +125,7 @@ const deleteUserByUserId = async (req: Request, res: Response) => {
 
 const updateOrdersByUserId = async (req: Request, res: Response) => {
   const { userId } = req.params;
-  const orders = req.body;
+  const order = req.body;
   try {
     const userData = await userService.getUser(userId);
     if (!userData) {
@@ -139,8 +139,11 @@ const updateOrdersByUserId = async (req: Request, res: Response) => {
       });
     }
 
-    userData.orders = [...userData.orders, ...orders];
-
+    if (order.length) {
+      userData.orders = [...userData.orders, ...order];
+    } else {
+      userData.orders.push(order);
+    }
     const result = await userService.updateUserByUserId(userId, userData);
     if (!result) {
       return res.status(500).json({
